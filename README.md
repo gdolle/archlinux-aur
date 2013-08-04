@@ -2,11 +2,14 @@
 
 ## Installation
 
-Download the package files, then to compile and install just type
+Get the package files and just type
 
     makepkg -si
 
-To create an AUR package, just type
+
+## Misc
+
+To send the package on AUR, create it using the command
 
     makepkg -S
 
@@ -14,4 +17,9 @@ If you modify one of these packages, change the md5sum in the PKGBUILD.
 To get the new sum, just type
 
     makepkg -g
+
+## Links
+
+[ArchWiki : howto create package](https://wiki.archlinux.org/index.php/Creating_Packages)
+
 
