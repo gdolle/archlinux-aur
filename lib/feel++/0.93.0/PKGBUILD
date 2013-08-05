@@ -12,6 +12,7 @@ depends=('blas'
          'arpack'
          'openmpi'
          'hdf5-openmpi'
+         'openturns'
          'suitesparse'
          'gmsh'
          'mumps'
@@ -26,6 +27,7 @@ md5sums=('56e986246a055fa68e243f7411d79e18')
 #prepare() {
 #        cd "$srcdir/$pkgname-$pkgver"
 #	patch -p1 -i "$srcdir/$pkgname-$pkgver.patch"
+#GMSH_INCLUDE_DIR= ?
 #}
 
 build() {
