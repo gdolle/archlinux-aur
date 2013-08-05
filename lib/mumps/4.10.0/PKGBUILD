@@ -52,4 +52,4 @@ package(){
   install -D -m644 "${srcdir}/MUMPS_${pkgver}/LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE" || return 1
 }
 md5sums=('959e9981b606cd574f713b8422ef0d9f'
-         '26f4ad158ab1783d87b1bca1d804f0ee')
+         'befd42a89af9457ffe696e2204bd76e1')

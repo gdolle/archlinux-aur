@@ -27,7 +27,8 @@ ISCOTCH    = -I$(SCOTCHDIR)/include
 # line (remember to add -Dptscotch in the ORDERINGSF variable below)
 
 #LSCOTCH    = -L$(SCOTCHDIR)/lib -lesmumps -lscotch -lscotcherr
-LSCOTCH    = -L$(SCOTCHDIR)/lib -lptesmumps -lptscotch -lptscotcherr -lscotchmetis
+#LSCOTCH    = -L$(SCOTCHDIR)/lib -lptesmumps -lptscotch -lptscotcherr -lscotchmetis
+LSCOTCH    = -L$(SCOTCHDIR)/lib -lptesmumps -lptscotch -lptscotcherr -lscotchmetis -lscotch
 
 
 LPORDDIR = $(topdir)/PORD/lib/
