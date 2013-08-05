@@ -21,5 +21,5 @@ To get the new sum, just type
 ## Links
 
 [ArchWiki : howto create package](https://wiki.archlinux.org/index.php/Creating_Packages)
-
+[PKGBUILD functions](http://wiki.archlinux.fr/PKGBUILD)
 
