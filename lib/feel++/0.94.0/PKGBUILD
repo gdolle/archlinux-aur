@@ -1,6 +1,6 @@
 # Maintainer: Guillaume DOLLÉ <dolle.guillaume@gmail.com>
 pkgname=feel++
-pkgver=0.93.0
+pkgver=0.94.0
 pkgrel=1
 pkgdesc="C++ library for the finite element method"
 arch=('i686' 'x86_64')
