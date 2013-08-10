@@ -16,6 +16,8 @@ depends=('blas'
          'gmsh'
          'mumps'
          'scotch_esmumps'
+         'metis'
+         'parmetis'
          'slepc'
          'petsc')
 makedepends=('cmake')
