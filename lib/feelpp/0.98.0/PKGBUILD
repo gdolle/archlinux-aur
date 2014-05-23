@@ -6,37 +6,32 @@ pkgrel=1
 arch=('i686' 'x86_64')
 url="https://github.com/feelpp"
 license=('LGPL')
-depends=('openmpi'
-         'ann'
+depends=('ann'
          'cln'
-         'blas'
-         'lapack'
-         'scalapack'
          'arpack'
-         'boost>=1.49'
-         'boost-libs>=1.49'
+         'boost-libs'
          'libxml2'
          'gmsh'
          'mumps'
-         'scotch_esmumps'
-         'petsc>3.2' )
+         'petsc' )
 makedepends=('cmake>=2.8.7')
 optdepends=( 'eigen3'
              'fftw'
              'metis'
-             'parmetis'
              'suitesparse'
-             'slepc>3.2'
+             'slepc'
              'openturns'
              'hdf5-openmpi'
              'hdf5'
-             'gperftools'
-             'python>=2.5')
+             'gperftools' )
 
 source=($url/$pkgbase/releases/download/v$pkgver/$pkgbase-$pkgver-final.tar.gz)
 
-build() {
+prepare() {
     mkdir -p build
+}
+
+build() {
     cd build
     ../$pkgbase-$pkgver-final/configure -r --prefix=/usr
 }
