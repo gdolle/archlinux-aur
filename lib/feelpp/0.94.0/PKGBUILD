@@ -1,0 +1,47 @@
+# Maintainer: Guillaume DOLLÉ <dolle.guillaume@gmail.com>
+pkgname=feel++
+pkgver=0.94.0
+pkgrel=1
+pkgdesc="C++ library for the finite element method"
+arch=('i686' 'x86_64')
+url="https://github.com/feelpp"
+license=('GPLv2')
+depends=('blas'
+         'lapack'
+         'arpack'
+         'openmpi'
+         'hdf5-openmpi'
+         'openturns'
+         'suitesparse'
+         'gmsh'
+         'mumps'
+         'scotch_esmumps'
+         'metis'
+         'parmetis'
+         'slepc'
+         'petsc')
+makedepends=('cmake')
+optdepends=('feel++-docs' 'feel++-apps' 'paraview' )
+source=(${url}/${pkgname//++/pp}/archive/${pkgname//++/pp}-$pkgver.tar.gz)
+md5sums=('56e986246a055fa68e243f7411d79e18')
+
+#prepare() {
+#        cd "$srcdir/$pkgname-$pkgver"
+#	patch -p1 -i "$srcdir/$pkgname-$pkgver.patch"
+#GMSH_INCLUDE_DIR= ?
+#}
+
+build() {
+	cd "${srcdir}/${pkgname//++/pp}-${pkgname//++/pp}-$pkgver"
+	#./configure --prefix=/usr
+        #mkdir -p build
+        #cd build
+	#make
+}
+
+
+#package() {
+	#cd "$srcdir/$pkgname-$pkgver"
+	#make DESTDIR="$pkgdir/" install
+#}
+
