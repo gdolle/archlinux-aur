@@ -1,0 +1,57 @@
+# Maintainer: Guillaume DOLLÉ <dolle.guillaume at gmail.com>
+pkgname='feelpp'
+pkgver=0.100.0
+_pkgrc=beta.7
+pkgrel=1
+pkgdesc="Feel++ a library for finite element methods - libraries"
+arch=('i686' 'x86_64')
+url="https://github.com/feelpp"
+license=('LGPL')
+depends=('ann'
+         'cln'
+         'ginac'
+         'arpack'
+         'boost-libs'
+         'libxml2'
+         'gmsh'
+         'mumps'
+         'petsc'
+         'metis'
+         'parmetis')
+makedepends=('cmake>=2.8.7')
+optdepends=( 'eigen3'
+             'fftw'
+             'metis'
+             'suitesparse'
+             'slepc'
+             'openturns'
+             'hdf5'
+             'hdf5-openmpi'
+             'gperftools' )
+
+source=($url/$pkgname/releases/download/v$pkgver-$_pkgrc/$pkgname-$pkgver-$_pkgrc.tar.gz)
+
+prepare() {
+    mkdir -p build
+}
+
+build() {
+    cd $srcdir/build/
+    cmake -DCMAKE_BUILD_TYPE=Release \
+          -DCMAKE_INSTALL_PREFIX=/usr \
+    ../$pkgbase-$pkgver-$_pkgrc/
+    cd feel/
+    make
+}
+
+package() {
+    cd $srcdir/build/feel/
+    make DESTDIR="$pkgdir/" install
+    cd $srcdir/build/cmake/modules
+    make DESTDIR="$pkgdir/" install
+    install -D -m 0644 $srcdir/$pkgbase-$pkgver-$_pkgrc/COPYING.md $pkgdir/usr/share/licenses/${pkgbase//pp}/COPYING.md
+    install -D -m 0644 $srcdir/$pkgbase-$pkgver-$_pkgrc/ChangeLog  $pkgdir/usr/share/doc/${pkgbase//pp}/ChangeLog
+    install -D -m 0644 $srcdir/$pkgbase-$pkgver-$_pkgrc/README.md  $pkgdir/usr/share/doc/${pkgbase//pp}/README.md
+}
+
+md5sums=('93d609832a3c706f00c4f66eb79de519')
