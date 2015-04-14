@@ -1,0 +1,70 @@
+# Maintainer: Guillaume DOLLÉ <dolle.guillaume at gmail.com>
+pkgbase=feel++
+pkgname=( 'feel++' )
+pkgver=0.98.0
+pkgrel=1
+pkgdesc="C++ library for finite element methods"
+arch=('i686' 'x86_64')
+url="https://github.com/feelpp"
+license=('LGPL')
+depends=('ann'
+         'cln'
+         'gl2ps'
+         'blas'
+         'lapack'
+         'arpack'
+         'boost>=1.49'
+         'boost-libs>=1.49'
+         'libxml2'
+         'gmsh'
+         'mumps'
+         'scotch_esmumps'
+         'petsc>3.2'
+         )
+
+makedepends=('cmake>=2.8.7')
+optdepends=( 'openmpi'
+             'eigen3'
+             'metis'
+             'parmetis'
+             'slepc>3.2'
+             'openturns'
+             'suitesparse'
+             'hdf5-openmpi'
+             'hdf5'
+             'python>2.5'
+             'gperftools'
+             'paraview' )
+
+
+source=("${pkgname//++/pp}-$pkgver-final"::git+http://github.com/feelpp/feelpp.git#branch=develop)
+noextract=()
+md5sums=('SKIP')
+
+export MAKEFLAGS="-j4"
+
+# Custom
+
+prepare() {
+    cd  "${srcdir}/${pkgbase//++/pp}-$pkgver-final"
+    mkdir -p build
+}
+
+###############################################################################
+# Feel++ shared libraries
+###############################################################################
+
+package() {
+    pkgdesc="Feel++ dynamic library"
+    cd "${srcdir}/${pkgbase//++/pp}-$pkgver-final/build/"
+    cmake -DCMAKE_INSTALL_PREFIX=/usr/local       \
+          -DCMAKE_BUILD_TYPE=Release              \
+          -DCMAKE_C_COMPILER=/usr/bin/clang       \
+          -DCMAKE_CXX_COMPILER=/usr/bin/clang++   \
+          ../
+
+    cd "feel/"
+    make $MAKEFLAGS ${pkgbase//++/pp}
+    make DESTDIR="$pkgdir/" install
+}
+
