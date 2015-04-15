@@ -45,6 +45,8 @@ build() {
 }
 
 package() {
+    cd $srcdir/build/contrib/ginac
+    make DESTDIR="$pkgdir/" install
     cd $srcdir/build/contrib/nlopt
     make DESTDIR="$pkgdir/" install
     cd $srcdir/build/contrib/gmsh
