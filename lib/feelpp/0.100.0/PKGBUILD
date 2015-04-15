@@ -45,6 +45,10 @@ build() {
 }
 
 package() {
+    cd $srcdir/build/contrib/nlopt
+    make DESTDIR="$pkgdir/" install
+    cd $srcdir/build/contrib/gmsh
+    make DESTDIR="$pkgdir/" install
     cd $srcdir/build/feel/
     make DESTDIR="$pkgdir/" install
     cd $srcdir/build/cmake/modules
