@@ -1,0 +1,39 @@
+# Maintainer: Guillaume DOLLÉ <dolle.guillaume at gmail.com>
+pkgname='feelpp-examples'
+pkgver=r4.14e4f40
+pkgrel=1
+pkgdesc="Feel++ a library for finite element methods - examples"
+arch=('i686' 'x86_64')
+url="https://github.com/feelpp"
+license=('LGPL')
+depends=('feelpp')
+makedepends=('cmake>=2.8.7')
+source=("$pkgname"::git+http://github.com/feelpp/quickstart.git#branch=master)
+noextract=()
+md5sums=('SKIP')
+
+pkgver() {
+  cd "$srcdir/$pkgname"
+    ( set -o pipefail
+        git describe --long 2>/dev/null | sed 's/\([^-]*-g\)/r\1/;s/-/./g' ||
+                printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+      )
+}
+
+prepare() {
+    mkdir -p build
+}
+
+build() {
+    cd build/
+    cmake -DCMAKE_BUILD_TYPE=Release \
+          -DCMAKE_INSTALL_PREFIX=/usr \
+    $srcdir/$pkgname/
+    cd feel/
+    make
+}
+
+package() {
+    cd build/
+    make DESTDIR="$pkgdir/" install
+}
