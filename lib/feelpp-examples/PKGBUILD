@@ -1,6 +1,6 @@
 # Maintainer: Guillaume DOLLÉ <dolle.guillaume at gmail.com>
 pkgname='feelpp-examples'
-pkgver=r4.14e4f40
+pkgver=r86.6dd674c
 pkgrel=1
 pkgdesc="Feel++ a library for finite element methods - examples"
 arch=('i686' 'x86_64')
