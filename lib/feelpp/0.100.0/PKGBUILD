@@ -9,7 +9,8 @@ url="https://github.com/feelpp"
 license=('LGPL')
 depends=('ann'
          'cln'
-         'ginac'
+         'eigen'
+         'scotch'
          'arpack'
          'boost-libs'
          'libxml2'
@@ -18,25 +19,24 @@ depends=('ann'
          'petsc'
          'metis'
          'parmetis')
+
 makedepends=('cmake>=2.8.7')
-optdepends=( 'eigen3'
-             'fftw'
+optdepends=( 'fftw'
              'metis'
              'suitesparse'
              'slepc'
              'openturns'
-             'hdf5'
              'hdf5-openmpi'
              'gperftools' )
 
 source=($url/$pkgname/releases/download/v$pkgver-$_pkgrc/$pkgname-$pkgver-$_pkgrc.tar.gz)
 
 prepare() {
-    mkdir -p build
+    mkdir -p work
 }
 
 build() {
-    cd $srcdir/build/
+    cd work/
     cmake -DCMAKE_BUILD_TYPE=Release \
           -DCMAKE_INSTALL_PREFIX=/usr \
     ../$pkgbase-$pkgver-$_pkgrc/
@@ -45,16 +45,16 @@ build() {
 }
 
 package() {
-    cd $srcdir/build/contrib/ginac
-    make DESTDIR="$pkgdir/" install
-    cd $srcdir/build/contrib/nlopt
-    make DESTDIR="$pkgdir/" install
-    cd $srcdir/build/contrib/gmsh
-    make DESTDIR="$pkgdir/" install
-    cd $srcdir/build/feel/
-    make DESTDIR="$pkgdir/" install
-    cd $srcdir/build/cmake/modules
-    make DESTDIR="$pkgdir/" install
+    cd work/feel/
+    make DESTDIR=$pkgdir install
+    cd ../contrib/ginac/
+    make DESTDIR=$pkgdir install
+    cd ../nlopt/
+    make DESTDIR=$pkgdir install
+    cd ../gmsh/
+    make DESTDIR=$pkgdir install
+    cd ../../cmake/modules/
+    make DESTDIR=$pkgdir install
     install -D -m 0644 $srcdir/$pkgbase-$pkgver-$_pkgrc/COPYING.md $pkgdir/usr/share/licenses/${pkgbase//pp}/COPYING.md
     install -D -m 0644 $srcdir/$pkgbase-$pkgver-$_pkgrc/ChangeLog  $pkgdir/usr/share/doc/${pkgbase//pp}/ChangeLog
     install -D -m 0644 $srcdir/$pkgbase-$pkgver-$_pkgrc/README.md  $pkgdir/usr/share/doc/${pkgbase//pp}/README.md
