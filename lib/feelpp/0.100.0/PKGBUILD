@@ -9,11 +9,14 @@ url="https://github.com/feelpp"
 license=('LGPL')
 depends=('ann'
          'cln'
+         'vtk'
+         'qt5-webkit'
          'eigen'
          'scotch'
          'arpack'
          'boost-libs'
          'libxml2'
+         'fftw'
          'gmsh'
          'mumps'
          'petsc'
@@ -21,8 +24,7 @@ depends=('ann'
          'parmetis')
 
 makedepends=('cmake>=2.8.7')
-optdepends=( 'fftw'
-             'metis'
+optdepends=( 'metis'
              'suitesparse'
              'slepc'
              'openturns'

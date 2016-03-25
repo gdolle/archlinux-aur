@@ -23,7 +23,6 @@ optdepends=( 'eigen3'
              'slepc'
              'openturns'
              'hdf5-openmpi'
-             'hdf5'
              'gperftools' )
 
 source=($url/$pkgname/releases/download/v$pkgver-final.1/$pkgname-$pkgver-final.1.tar.gz)

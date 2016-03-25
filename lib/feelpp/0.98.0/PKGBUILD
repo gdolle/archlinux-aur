@@ -1,6 +1,7 @@
 # Maintainer: Guillaume DOLLÉ <dolle.guillaume at gmail.com>
-pkgbase=feelpp
-pkgname=( 'feelpp' 'feelpp-examples' )
+pkgbase='feelpp'
+pkgname='feelpp'
+true && pkgname=( 'feelpp' 'feelpp-examples' )
 pkgver=0.98.0
 pkgrel=1
 arch=('i686' 'x86_64')

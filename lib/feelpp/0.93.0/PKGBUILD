@@ -10,12 +10,12 @@ depends=('blas'
          'lapack'
          'arpack'
          'openmpi'
-         'hdf5-openmpi'
-         'openturns'
          'suitesparse'
          'gmsh'
          'mumps'
          'scotch_esmumps'
+         'metis'
+         'parmetis'
          'slepc'
          'petsc')
 makedepends=('cmake')
@@ -32,14 +32,18 @@ md5sums=('56e986246a055fa68e243f7411d79e18')
 build() {
 	cd "${srcdir}/${pkgname//++/pp}-${pkgname//++/pp}-$pkgver"
 	#./configure --prefix=/usr
-        #mkdir -p build
-        #cd build
-	#make
+        mkdir -p build
+        cd build
+	cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/opt/feelpp ../
+        cd feel
+        make
 }
 
 
-#package() {
+package() {
 	#cd "$srcdir/$pkgname-$pkgver"
 	#make DESTDIR="$pkgdir/" install
-#}
+        cd build/feel/
+        make install
+}
 

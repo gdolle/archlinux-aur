@@ -18,8 +18,14 @@ depends=('blas'
          'scotch_esmumps'
          'metis'
          'parmetis'
-         'slepc'
-         'petsc')
+         'petsc'
+         'eigen3'
+         'gl2ps'
+         'ann'
+         'ginac')
+# Optional packages
+# slepc
+
 makedepends=('cmake')
 optdepends=('feel++-docs' 'feel++-apps' 'paraview' )
 source=(${url}/${pkgname//++/pp}/archive/${pkgname//++/pp}-$pkgver.tar.gz)

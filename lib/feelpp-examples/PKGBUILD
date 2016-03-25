@@ -8,7 +8,7 @@ url="https://github.com/feelpp"
 license=('LGPL')
 depends=('feelpp')
 makedepends=('cmake>=2.8.7')
-source=("$pkgname"::git+http://github.com/feelpp/quickstart.git#branch=master)
+source=("$pkgname"::git+http://github.com/feelpp/quickstart.git#branch=develop)
 noextract=()
 md5sums=('SKIP')
 
